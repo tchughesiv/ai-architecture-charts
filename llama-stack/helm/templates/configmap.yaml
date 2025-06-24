@@ -161,3 +161,21 @@ data:
       mcp_endpoint:
         uri: {{ $server.uri }}
     {{- end }}
+    server:
+      auth:
+        provider_type: "custom"
+        config:
+          endpoint: "http://ai-virtual-assistant:8887/validate"
+        access_policy:
+        - permit:
+            actions: [create, read, update, delete]
+#        - permit:
+#            actions: [read]
+#            resource: model::*
+#          description: all users have read access to models
+#        - forbid:
+#            actions: [create, read, update, delete]
+#          unless: user with admin in roles
+#        - permit:
+#            actions: [read]
+#          when: user with user in roles
