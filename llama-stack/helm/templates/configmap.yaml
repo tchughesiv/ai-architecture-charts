@@ -48,14 +48,6 @@ data:
             type: sqlite
             namespace: null
             db_path: ${env.SQLITE_STORE_DIR:~/.llama/distributions/remote-vllm}/faiss_store.db
-      - provider_id: pgvector
-        provider_type: remote::pgvector
-        config:
-          host: ${env.POSTGRES_HOST:pgvector}
-          port: ${env.POSTGRES_PORT:5432}
-          db: ${env.POSTGRES_DBNAME:rag_blueprint}
-          user: ${env.POSTGRES_USER:postgres}
-          password: ${env.POSTGRES_PASSWORD:rag_password}
       safety:
       - provider_id: llama-guard
         provider_type: inline::llama-guard
@@ -167,3 +159,14 @@ data:
       mcp_endpoint:
         uri: {{ $server.uri }}
     {{- end }}
+    server:
+      auth:
+        provider_type: "oauth2_token"
+        config:
+          jwks:
+            uri: "https://xxxxx:6443/openid/v1/jwks"
+            key_recheck_period: 3600
+            token: "${env.TOKEN}"
+          tls_cafile: "/dsp-trusted-ca-dspa/dsp-ca.crt"
+          issuer: "https://kubernetes.default.svc"
+          audience: "https://kubernetes.default.svc"
