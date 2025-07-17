@@ -55,7 +55,7 @@ spec:
               echo "Data science pipeline configured"
 
               url="http://llamastack:8321/v1/models"
-              if [ -n ${LLAMA_STACK_AUTH_USER} ]; then
+              if [ ! -z ${LLAMA_STACK_AUTH_USER} ]; then
                 headers="-H \"X-Forwarded-User: ${LLAMA_STACK_AUTH_USER}\" -H \"Authorization: Bearer \$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)\""
               fi
               echo "Waiting for $url..."
