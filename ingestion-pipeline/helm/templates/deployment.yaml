@@ -83,6 +83,10 @@ spec:
               value: "http://llamastack.{{ .Release.Namespace }}.svc.cluster.local:8321"
             - name: DS_PIPELINE_URL
               value: "https://ds-pipeline-dspa.{{ .Release.Namespace }}.svc.cluster.local:8888"
+          {{- if .Values.authUser }}
+            - name: LLAMA_STACK_AUTH_USER
+              value: {{ .Values.authUser }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.targetPort }}
