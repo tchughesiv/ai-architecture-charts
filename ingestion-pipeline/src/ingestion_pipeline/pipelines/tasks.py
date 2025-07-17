@@ -179,7 +179,6 @@ def store_documents(llamastack_base_url: str, input_dir: dsl.InputPath(), auth_u
 
     # Step 3: Register vector database and store chunks with embeddings
     headers = {}
-    auth_user = os.getenv("LLAMA_STACK_AUTH_USER")
     if auth_user:
         headers={"X-Forwarded-User": auth_user}
         file_path = "/var/run/secrets/kubernetes.io/serviceaccount/token"
