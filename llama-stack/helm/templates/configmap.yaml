@@ -168,12 +168,10 @@ data:
           endpoint: "http://ai-virtual-assistant:8887/validate"
         access_policy:
         - permit:
-            actions: [read]
-            resource: model::*
-          description: all users have read access to models
-        - forbid:
-            actions: [create, read, update, delete]
-          unless: user with admin in roles
+            actions: [create, update, delete]
+          when: user with admin in roles
+        - permit:
+            actions: [create, update, delete]
+            resource: session::*
         - permit:
             actions: [read]
-          when: user with user in roles
