@@ -161,20 +161,17 @@ data:
       mcp_endpoint:
         uri: {{ $server.uri }}
     {{- end }}
+    {{- if .Values.authEndpoint }}
     server:
       auth:
         provider_type: "custom"
         config:
-          endpoint: "http://ai-virtual-assistant:8887/validate"
+          endpoint: {{ .Values.authEndpoint }}
         access_policy:
         - permit:
             actions: [create]
             resource: session::*
           description: all users have create access to sessions
-        - forbid:
-            actions: [create, update, delete]
-          unless: user with admin in roles
-          description: only users with admin role can create, update or delete resources
         - permit:
             actions: [read]
             resource: agent::*
@@ -192,16 +189,16 @@ data:
             resource: vector_db::*
           description: all users have read access to vector_dbs
         - permit:
-            actions: [read, update, delete]
-          when: user is owner
-          description: users can read, update and delete resources they own
-        - permit:
-            actions: [create, update, delete]
-            resource: agent::*
-          when: user with admin in roles
-          description: users with admin role can create, update or delete agents
-        - permit:
             actions: [create, update, delete]
             resource: vector_db::*
           when: user with admin in roles
-          description: users with admin role can create, update or delete vector_dbs
+          description: users with the admin role can create, update or delete vector_dbs
+        - forbid:
+            actions: [create, update, delete]
+          unless: user with admin in roles
+          description: only users with the admin role can create, update or delete resources
+        - permit:
+            actions: [read, update, delete]
+          when: user is owner
+          description: users can read, update and delete resources they own
+    {{- end }}
