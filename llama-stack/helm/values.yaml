@@ -86,9 +86,6 @@ volumes:
       claimName: llama-stack-data
   - emptyDir: {}
     name: cache
-  - configMap:
-      name: dsp-trusted-ca-dspa
-    name: dsp-trusted-ca-dspa-volume
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -98,9 +95,6 @@ volumeMounts:
     name: dot-llama
   - mountPath: /.cache
     name: cache
-  - name: dsp-trusted-ca-dspa-volume
-    mountPath: /dsp-trusted-ca-dspa
-    readOnly: true
 
 nodeSelector: {}
 
@@ -137,7 +131,8 @@ models:
 
 auth: {}
 # auth:
-#   endpoint: "https://auth.example.com/validate"
+#   custom:
+#     endpoint: "https://auth.example.com/validate"
 #   access_policy:
 #   - permit:
 #       actions: [create]
