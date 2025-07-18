@@ -135,8 +135,9 @@ models:
     id: RedHatAI/Llama-3.2-1B-Instruct-quantized.w8a8
     enabled: false
 
+auth: {}
 # auth:
-#   endpoint: http://ai-virtual-assistant:8887/validate
+#   endpoint: "https://auth.example.com/validate"
 #   access_policy:
 #   - permit:
 #       actions: [create]
