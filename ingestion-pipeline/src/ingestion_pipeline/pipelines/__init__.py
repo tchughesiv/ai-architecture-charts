@@ -25,11 +25,8 @@ def add_pipeline(pipeline_name: str, source: str):
     pipeline_params = {
         "pipeline_name": pipeline_name,
         "llamastack_base_url": os.environ["LLAMASTACK_BASE_URL"],
-        "auth_user": None
+        "auth_user": os.getenv("LLAMA_STACK_AUTH_USER", "")
     }
-    auth_user_var = "LLAMA_STACK_AUTH_USER"
-    if os.getenv(auth_user_var):
-        pipeline_params["auth_user"] = os.environ[auth_user_var]
 
     with tempfile.NamedTemporaryFile(suffix=".yaml") as tmp:
         compiler.Compiler().compile(

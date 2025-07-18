@@ -89,7 +89,7 @@ def fetch_from_github(output_dir: dsl.OutputPath()):
 
 
 @dsl.component(base_image=BASE_IMAGE)
-def store_documents(llamastack_base_url: str, input_dir: dsl.InputPath(), auth_user: Optional[str]):
+def store_documents(llamastack_base_url: str, input_dir: dsl.InputPath(), auth_user: str):
     import os
     import asyncio
     from pathlib import Path

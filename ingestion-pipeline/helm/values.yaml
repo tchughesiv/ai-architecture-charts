@@ -8,7 +8,7 @@ image:
   repository: quay.io/tchughesiv/ingestion-pipeline
   pullPolicy: Always
   # Use Chart.AppVersion for image tag, so no need to set it here
-  tag: "0.2.14-5"
+  tag: "0.2.14-6"
 
 imagePullSecrets: []
 

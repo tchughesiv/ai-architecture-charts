@@ -4,7 +4,7 @@ from typing import Optional
 from . import tasks
 
 
-def s3_pipeline(pipeline_name: str, llamastack_base_url: str, auth_user: Optional[str]):
+def s3_pipeline(pipeline_name: str, llamastack_base_url: str, auth_user: str):
     @dsl.pipeline(name="fetch-and-store-pipeline")
     def _pipeline():
         from kfp import kubernetes
@@ -39,7 +39,7 @@ def s3_pipeline(pipeline_name: str, llamastack_base_url: str, auth_user: Optiona
     return _pipeline
 
 
-def url_pipeline(pipeline_name: str, llamastack_base_url: str, auth_user: Optional[str]):
+def url_pipeline(pipeline_name: str, llamastack_base_url: str, auth_user: str):
     @dsl.pipeline(name="fetch-and-store-pipeline")
     def _pipeline():
         from kfp import kubernetes
@@ -69,7 +69,7 @@ def url_pipeline(pipeline_name: str, llamastack_base_url: str, auth_user: Option
     return _pipeline
 
 
-def github_pipeline(pipeline_name: str, llamastack_base_url: str, auth_user: Optional[str]):
+def github_pipeline(pipeline_name: str, llamastack_base_url: str, auth_user: str):
     @dsl.pipeline(name="fetch-and-store-pipeline")
     def _pipeline():
         from kfp import kubernetes
