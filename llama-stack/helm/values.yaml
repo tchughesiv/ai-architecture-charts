@@ -27,6 +27,9 @@ securityContext: {}
 
 progressDeadlineSeconds: 3600
 
+initContainers:
+  enabled: true
+
 strategy:
   type: Recreate
 
